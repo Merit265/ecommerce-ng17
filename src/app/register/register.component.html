@@ -1,0 +1,121 @@
+<h1 class="text-5xl text-main">Register now :</h1>
+
+<section class="bg-white">
+ <div class="w-full mx-auto max-w-xl flex flex-col justify-center py-24   relative p-8">
+  <div class="prose text-gray-500 prose-sm prose-headings:font-normal prose-headings:text-xl">
+   <div>
+    @if (backendMsg !==null) {
+
+    <h2 class="text-4xl error">{{backendMsg}}</h2>
+
+
+    }
+
+    <form class="w-full divide-neutral-200 rounded-3xl bg-white shadow-2xl border p-8 lg:p-10"
+     [formGroup]="registerForm" (ngSubmit)="register(registerForm)">
+
+     <label class="mt-5">name:</label>
+
+     <input formControlName="name" type="text" class="form-control">
+
+     <!-- ?. optional chaining   -->
+
+     @if(registerForm.get('name')?.touched && registerForm.get('name')?.hasError('required')){
+
+     <p class="error">user name required</p>
+     }
+
+     @if(registerForm.get('name')?.touched && registerForm.get('name')?.hasError('minlength')){
+
+     <p class="error">user name at least 3 chracters</p>
+     }
+
+     @if(registerForm.get('name')?.touched && registerForm.get('name')?.hasError('maxlength')){
+
+     <p class="error">user name at maximum 15 chracters</p>
+     }
+
+
+
+
+
+     <label class="mt-5">email:</label>
+
+     <input formControlName="email" type="email" class="form-control">
+
+     @if(registerForm.get('email')?.touched && registerForm.get('email')?.hasError('required')){
+
+     <p class="error">must write email </p>
+     }
+
+     @if(registerForm.get('email')?.touched && registerForm.get('email')?.hasError('email')){
+
+     <p class="error">must use correct email </p>
+     }
+
+
+     <label class="mt-5">password:</label>
+
+     <input formControlName="password" type="text" class="form-control">
+
+     @if(registerForm.get('password')?.touched && registerForm.get('password')?.hasError('required')){
+
+     <p class="error">write password</p>
+     }
+
+     @if(registerForm.get('password')?.touched && registerForm.get('password')?.hasError('minlength')){
+
+     <p class="error">password at least 6 charcters</p>
+     }
+
+
+     <label class="mt-5">repassword:</label>
+
+     <input formControlName="rePassword" type="text" class="form-control">
+
+     @if(registerForm.get('rePassword')?.touched && registerForm.get('rePassword')?.hasError('required')){
+
+     <p class="error">write repassword</p>
+     }
+
+     @if(registerForm.touched && registerForm.hasError('didntMatch')){
+
+     <p class="error">repassword didn't match password</p>
+     }
+
+     <label class="mt-5">phone:</label>
+
+     <input formControlName="phone" type="number" class="form-control">
+     @if(registerForm.get('phone')?.touched && registerForm.get('phone')?.hasError('required')){
+
+     <p class="error">write phone number</p>
+     }
+
+     @if(registerForm.get('phone')?.touched && registerForm.get('phone')?.hasError('pattern')){
+
+     <p class="error">write egyption phone number</p>
+     }
+
+
+     @if(loading){
+
+     <button class="form-btn bg-main">
+      <i class="fa-solid fa-spinner fa-spin"></i>
+     </button>
+     }@else {
+     <button [disabled]="registerForm.invalid" class="form-btn bg-main">
+      register
+     </button>
+
+     }
+
+
+
+
+    </form>
+
+
+   </div>
+  </div>
+ </div>
+</section>

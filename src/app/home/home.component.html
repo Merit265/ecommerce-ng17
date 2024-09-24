@@ -1,0 +1,43 @@
+<app-category-slider [Categories]="allCategories"></app-category-slider>
+
+
+
+
+<div class="flex flex-wrap  flex-col  md:flex-row  justify-center mt-5">
+
+  <input type="text"  [(ngModel)]="pname" class="form-control z-50 relative" placeholder="search..">
+
+  @if (loading) {
+    <!-- <app-loader></app-loader> -->
+  }@else {
+    @for (p of allProducts|search:pname ; track $index) {
+
+      <div class=" product md:w-2/12  w-full  p-4 text-center  ">
+    
+    
+        <img [src]="p.imageCover" class="w-full" alt="" [routerLink]="['/productDetails' ,p._id ,p.title ]">
+    
+        <h5>{{p.category.name}}</h5>
+        <h4>{{p.title}}</h4>
+        <div class="flex justify-between">
+          <span>{{p.price}}EGP</span>
+          <span>{{p.ratingsAverage}}
+            <i class="fa-solid fa-star rating-color"></i>
+          </span>
+        </div>
+        <button (click)="addToCart(p._id)" class="  bg-main p-3 mt-3 rounded btn ">add to cart </button>
+    
+      </div>
+    
+    
+      }
+      @empty {
+        <h1 class="text-main text-7xl">no result</h1>
+      }
+    
+
+  }
+
+
+
+</div>

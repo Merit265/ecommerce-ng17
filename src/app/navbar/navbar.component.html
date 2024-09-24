@@ -1,0 +1,93 @@
+<nav class=" bg-zinc-200  ">
+  <div class="container mx-auto  md:flex      justify-between p-3">
+    <ul class=" md:flex space-y-3  md:space-x-3  ">
+      <li>
+        <img src="../../assets/images/freshcart-logo.svg" class="w-[150px]" alt="">
+      </li>
+
+
+      @if (showLinks) {
+
+
+      <li>
+        <a class="md:p-[20px]     p-3" routerLink="home" routerLinkActive="bg-main">{{"navbar.home" | translate}}</a>
+      </li>
+      <li>
+        <a class="md:p-[20px]     p-3" routerLink="cart" routerLinkActive="bg-main">{{"navbar.cart" | translate}}</a>
+      </li>
+      <li>
+        <a class="md:p-[20px]     p-3" routerLink="products" routerLinkActive="bg-main">{{"navbar.products" |
+          translate}}</a>
+      </li>
+      <li>
+        <a class="md:p-[20px]     p-3" routerLink="brands" routerLinkActive="bg-main">{{"navbar.brands" |
+          translate}}</a>
+      </li>
+      <li>
+        <a class="md:p-[20px]     p-3" routerLink="categories" routerLinkActive="bg-main">{{"navbar.categories" |
+          translate}}</a>
+      </li>
+      }
+    </ul>
+
+    <ul class="md:flex space-x-3">
+      <li>
+        <i class="fa-brands fa-facebook-f"></i>
+      </li>
+      <li>
+        <i class="fa-brands fa-youtube"></i>
+      </li>
+      <li>
+        <i class="fa-brands fa-twitter"></i>
+      </li>
+      <li>
+        <i class="fa-brands fa-tiktok"></i>
+      </li>
+      <li>
+        <i class="fa-brands fa-instagram"></i>
+      </li>
+
+      @if (showLinks){
+      <li>
+        {{cartItems()}}
+        <i class="fa-solid fa-cart-shopping"></i>
+      </li>
+      }
+
+
+      @if (!showLinks) {
+      <li>
+        <a class="md:p-[20px]     p-3" routerLink="register" routerLinkActive="bg-main">register</a>
+      </li>
+      <li>
+        <a class="md:p-[20px]     p-3" routerLink="login" routerLinkActive="bg-main">login</a>
+      </li>
+
+      }
+
+      @if (showLinks) {
+      <li>
+
+        <i class="fa-solid fa-user"></i>
+        {{loggedUserName}}
+      </li>
+      <li (click)="logOut()">
+        {{"navbar.signOut" | translate}}
+      </li>
+      <li (click)="changeLang('en')" class="md:p-[20px]  ">en</li>
+
+
+      <li (click)="changeLang('ar')" class="md:p-[20px] ">ar</li>
+
+
+
+      }
+
+
+
+    </ul>
+  </div>
+</nav>
+
+
+<!-- authonitication + authorization  -->

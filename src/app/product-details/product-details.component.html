@@ -1,0 +1,24 @@
+<div class="flex flex-wrap  flex-col  md:flex-row  justify-center items-center h-full mt-5"> 
+
+ <div class="w-3/12">
+  
+  <img [src]="singleProduct.imageCover" class="w-full" alt="" >
+
+ </div>
+
+
+
+ <div class=" w-9/12  p-4 text-center ">
+
+  <h5>{{singleProduct.category.name}}</h5>
+  <h4>{{singleProduct.title}}</h4>
+  <p>{{singleProduct.description}}</p>
+  <div class="flex justify-center mx-auto space-x-3">
+   <span>{{singleProduct.price}}EGP</span>
+   <span>{{singleProduct.ratingsAverage}}
+    <i class="fa-solid fa-star rating-color"></i>
+   </span>
+  </div>
+  <button class="  bg-main p-3 mt-3 rounded btn ">add to cart </button>
+
+ </div>
