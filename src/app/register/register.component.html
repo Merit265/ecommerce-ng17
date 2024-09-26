@@ -1,121 +1,127 @@
-<h1 class="text-5xl text-main">Register now :</h1>
+ <section class=" lg:grid grid-cols-2 h-screen">
+ <div class=" bg-gradient hidden lg:block ">
+  <div class="p-20 text-white">
 
-<section class="bg-white">
- <div class="w-full mx-auto max-w-xl flex flex-col justify-center py-24   relative p-8">
-  <div class="prose text-gray-500 prose-sm prose-headings:font-normal prose-headings:text-xl">
+  
+   <span class="text-4xl">Get Started <br> With Your Free Account </span>
+  </div>
+ </div>
+
+ <div class="flex flex-col justify-center place-items-center w-full h-screen ">
+  <img src="../../assets/images/logo.png" width="100" />
+  <span class="text-3xl text-ceter text-black font-medium mb-4">Create An Account</span>
+  <form class="lg:w-6/12 w-9/12 flex flex-col gap-2" [formGroup]="registerForm" (ngSubmit)="register(registerForm)">
+
+
    <div>
-    @if (backendMsg !==null) {
+    <label class="mt-5">name:</label>
 
-    <h2 class="text-4xl error">{{backendMsg}}</h2>
+    <input formControlName="name" type="text" class="input-style">
 
 
+    @if(registerForm.get('name')?.touched && registerForm.get('name')?.hasError('required')){
+
+    <p class="error">user name required</p>
     }
 
-    <form class="w-full divide-neutral-200 rounded-3xl bg-white shadow-2xl border p-8 lg:p-10"
-     [formGroup]="registerForm" (ngSubmit)="register(registerForm)">
+    @if(registerForm.get('name')?.touched && registerForm.get('name')?.hasError('minlength')){
 
-     <label class="mt-5">name:</label>
+    <p class="error">user name at least 3 chracters</p>
+    }
 
-     <input formControlName="name" type="text" class="form-control">
+    @if(registerForm.get('name')?.touched && registerForm.get('name')?.hasError('maxlength')){
 
-     <!-- ?. optional chaining   -->
-
-     @if(registerForm.get('name')?.touched && registerForm.get('name')?.hasError('required')){
-
-     <p class="error">user name required</p>
-     }
-
-     @if(registerForm.get('name')?.touched && registerForm.get('name')?.hasError('minlength')){
-
-     <p class="error">user name at least 3 chracters</p>
-     }
-
-     @if(registerForm.get('name')?.touched && registerForm.get('name')?.hasError('maxlength')){
-
-     <p class="error">user name at maximum 15 chracters</p>
-     }
-
-
-
-
-
-     <label class="mt-5">email:</label>
-
-     <input formControlName="email" type="email" class="form-control">
-
-     @if(registerForm.get('email')?.touched && registerForm.get('email')?.hasError('required')){
-
-     <p class="error">must write email </p>
-     }
-
-     @if(registerForm.get('email')?.touched && registerForm.get('email')?.hasError('email')){
-
-     <p class="error">must use correct email </p>
-     }
-
-
-     <label class="mt-5">password:</label>
-
-     <input formControlName="password" type="text" class="form-control">
-
-     @if(registerForm.get('password')?.touched && registerForm.get('password')?.hasError('required')){
-
-     <p class="error">write password</p>
-     }
-
-     @if(registerForm.get('password')?.touched && registerForm.get('password')?.hasError('minlength')){
-
-     <p class="error">password at least 6 charcters</p>
-     }
-
-
-     <label class="mt-5">repassword:</label>
-
-     <input formControlName="rePassword" type="text" class="form-control">
-
-     @if(registerForm.get('rePassword')?.touched && registerForm.get('rePassword')?.hasError('required')){
-
-     <p class="error">write repassword</p>
-     }
-
-     @if(registerForm.touched && registerForm.hasError('didntMatch')){
-
-     <p class="error">repassword didn't match password</p>
-     }
-
-     <label class="mt-5">phone:</label>
-
-     <input formControlName="phone" type="number" class="form-control">
-     @if(registerForm.get('phone')?.touched && registerForm.get('phone')?.hasError('required')){
-
-     <p class="error">write phone number</p>
-     }
-
-     @if(registerForm.get('phone')?.touched && registerForm.get('phone')?.hasError('pattern')){
-
-     <p class="error">write egyption phone number</p>
-     }
-
-
-     @if(loading){
-
-     <button class="form-btn bg-main">
-      <i class="fa-solid fa-spinner fa-spin"></i>
-     </button>
-     }@else {
-     <button [disabled]="registerForm.invalid" class="form-btn bg-main">
-      register
-     </button>
-
-     }
-
-
-
-
-    </form>
-
+    <p class="error">user name at maximum 15 chracters</p>
+    }
 
    </div>
-  </div>
+
+
+   <div>
+    <label>email</label>
+
+    <input formControlName="email" type="email" class="input-style">
+
+    @if( registerForm.get('email')?.touched && registerForm.get('email')?.hasError('required')){
+
+    <span class="error">must write email </span>
+    }
+
+    @if( registerForm.get('email')?.touched && registerForm.get('email')?.hasError('email')){
+
+    <p class="error">must use correct email </p>
+    }
+   </div>
+   <div>
+    <label class="mt-5">password</label>
+
+    <input formControlName="password" type="text" class="input-style h-9 rounded">
+
+    @if( registerForm.get('password')?.touched && registerForm.get('password')?.hasError('required')){
+
+    <p class="error">write password</p>
+    }
+
+    @if( registerForm.get('password')?.touched && registerForm.get('password')?.hasError('minlength')){
+
+    <p class="error">password at least 6 charcters</p>
+    }
+   </div>
+
+
+
+
+   <div>
+
+    <label class="mt-5">repassword:</label>
+
+    <input formControlName="rePassword" type="text" class="input-style">
+
+    @if(registerForm.get('rePassword')?.touched && registerForm.get('rePassword')?.hasError('required')){
+
+    <p class="error">write repassword</p>
+    }
+
+    @if(registerForm.touched && registerForm.hasError('didntMatch')){
+
+    <p class="error">repassword didn't match password</p>
+    }
+   </div>
+   <div>
+
+    <label class="mt-5">phone:</label>
+
+    <input formControlName="phone" type="number" class="input-style">
+    @if(registerForm.get('phone')?.touched && registerForm.get('phone')?.hasError('required')){
+
+    <p class="error">write phone number</p>
+    }
+
+    @if(registerForm.get('phone')?.touched && registerForm.get('phone')?.hasError('pattern')){
+
+    <p class="error">write egyption phone number</p>
+    }
+
+   </div>
+
+
+<!-- 
+   <div class="flex justify-between mb-3">
+    <span class="forget-password">
+     forget passsword ?
+    </span>
+   </div> -->
+
+   <button class="flex items-center justify-center w-full rounded bg-gradient text-sm p-2 text-white"
+    [disabled]="loading">
+    <i class="fa-solid fa-spinner fa-spin" *ngIf="loading"></i>
+    <span *ngIf="!loading">Login</span>
+   </button>
+   <div class="flex gap-2 items-center mt-2">
+    <span>Already a member?</span>
+    <span class="forget-password" routerLink="/login">Sign In</span>
+   </div>
+
+  </form>
  </div>
 </section>

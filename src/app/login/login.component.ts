@@ -6,13 +6,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthonService } from '../authon.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule , NgIf , RouterLink ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })

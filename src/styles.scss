@@ -8,7 +8,7 @@
 @tailwind utilities;
 
 :root {
-    --main-color: #0aad0a;
+    --main-color: #008bd2;
     --light-color: #f0f3f2;
     --shadow: rgba(145, 158, 171, .2) 0px 2px 4px -1px, rgba(145, 158, 171, .14) 0px 4px 5px 0px, rgba(145, 158, 171, .12) 0px 1px 10px 0px;
     --font-family: 'Encode Sans Expanded', sans-serif;
@@ -19,6 +19,11 @@ body {
     font-family: var(--font-family) !important;
 }
 
+.bg-gradient{
+
+background: linear-gradient(to right, #240b36, #c31432); 
+
+}
 .rating-color {
     color: var(--rating-color);
 }
@@ -72,9 +77,18 @@ a:hover {
 }
 
 .error {
-    @apply border border-red-500 p-5 rounded text-red-500;
+    @apply  text-red-500;
 }
 
 .form-btn{
     @apply rounded-full bg-blue-600 px-8 py-2 h-12 text-sm font-semibold text-white hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-full
+}
+
+.input-style{
+    @apply w-full text-gray-200 border border-gray-800 text-sm focus:border-[#c31432] focus:outline-none focus:ring-0 h-9 rounded
+}
+
+.forget-password{
+    @apply underline cursor-pointer text-end text-gray-700 hover:text-black text-xs
+
 }

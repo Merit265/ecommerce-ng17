@@ -1,64 +1,66 @@
+<section class=" lg:grid grid-cols-2 h-screen">
+    <div class=" bg-gradient hidden lg:block ">
+        <div class="p-20 text-white">
+            <span class="text-4xl">
+                Welcome Back!
+            </span>
+            <br>
+            <span class="text-4xl">Please Enter Your Details.</span>
+        </div>
+    </div>
+
+    <div class="flex flex-col justify-center place-items-center w-full h-screen ">
+        <img src="../../assets/images/logo.png" width="100" />
+        <span class="text-3xl text-ceter text-black font-medium mb-4">Login To Your Account</span>
+        <form class="lg:w-6/12 w-9/12 flex flex-col gap-2" [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+            <div>
+                <label>email</label>
+
+                <input formControlName="email" type="email" class="input-style">
+
+                @if( loginForm.get('email')?.touched && loginForm.get('email')?.hasError('required')){
+
+                <span class="error">must write email </span>
+                }
+
+                @if( loginForm.get('email')?.touched && loginForm.get('email')?.hasError('email')){
+
+                <p class="error">must use correct email </p>
+                }
+            </div>
+            <div>
+                <label class="mt-5">password</label>
+
+                <input formControlName="password" type="text" class="input-style h-9 rounded">
+
+                @if( loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')){
+
+                <p class="error">write password</p>
+                }
+
+                @if( loginForm.get('password')?.touched && loginForm.get('password')?.hasError('minlength')){
+
+                <p class="error">password at least 6 charcters</p>
+                }
+            </div>
 
 
-<h1 class="text-main text-5xl my-5">Login now :</h1>
+            <div class="flex justify-between mb-3">
+                <span class="forget-password">
+                    forget passsword ?
+                </span>
+            </div>
+         
+            <button class="flex items-center justify-center w-full rounded bg-gradient text-sm p-2 text-white"
+                [disabled]="loading">
+                <i class="fa-solid fa-spinner fa-spin" *ngIf="loading"></i>
+                <span *ngIf="!loading">Login</span>
+            </button>
+            <div class="flex gap-2 items-center mt-2">
+                <span>New member?</span>
+                <span class="forget-password" routerLink="/register" >Sign Up</span>
+            </div>
 
-
-@if (backendMsg !==null) {
-
- <h2 class="text-4xl error">{{backendMsg}}</h2>
-
-
- }
-
- <section class="bg-white">
-  <div class="w-full mx-auto max-w-xl flex flex-col justify-center py-24   relative p-8">
-   <div class="prose text-gray-500 prose-sm prose-headings:font-normal prose-headings:text-xl">
-    <div>
-<form class="w-full divide-neutral-200 rounded-3xl bg-white shadow-2xl border p-8 lg:p-10" [formGroup]="loginForm"  (ngSubmit)="login(loginForm)">
-
-<label class="mt-5">email:</label>
-
-<input formControlName="email" type="email" class="form-control">
-
-@if( loginForm.get('email')?.touched &&  loginForm.get('email')?.hasError('required')){
-
-<p class="error">must write email </p>
-}
-
-@if( loginForm.get('email')?.touched &&  loginForm.get('email')?.hasError('email')){
-
-<p class="error">must use correct email </p>
-}
-
-
-<label class="mt-5">password:</label>
-
-<input formControlName="password" type="text" class="form-control">
-
-@if( loginForm.get('password')?.touched &&  loginForm.get('password')?.hasError('required')){
-
-<p class="error">write password</p>
-}
-
-@if( loginForm.get('password')?.touched &&  loginForm.get('password')?.hasError('minlength')){
-
-<p class="error">password at least 6 charcters</p>
-} 
-
-@if(loading){
-   
- <button class="form-btn bg-main">
-  <i class="fa-solid fa-spinner fa-spin"></i>
- </button> 
- }@else {
-  <button class="form-btn  bg-main">
-   Login
-  </button> 
- }
-
- 
-</form>
-</div>
-</div>
-</div>
+        </form>
+    </div>
 </section>

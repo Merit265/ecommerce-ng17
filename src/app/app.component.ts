@@ -8,6 +8,8 @@ import {
 } from 'ngx-spinner';
 import { TranslateService } from '@ngx-translate/core';
 import { isPlatformBrowser } from '@angular/common';
+import { AuthonService } from './authon.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -18,5 +20,15 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class AppComponent {
   title = 'ecommerce';
-  constructor(private spinner: NgxSpinnerService) {}
+  isLogin! : any ;
+  constructor(private spinner: NgxSpinnerService , private _AuthonService:AuthonService) {}
+
+  ngOnInit(): void {
+
+    this._AuthonService.isLogin.subscribe( val=>{
+      this.isLogin = val ;
+    })
+    
+    
+  }
 }
