@@ -6,13 +6,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthonService } from '../authon.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { NgIf } from '@angular/common';
 
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule , NgIf , RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
