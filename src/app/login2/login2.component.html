@@ -1,0 +1,90 @@
+<div className="lg:grid grid-cols-2 w-full min-h-screen">
+   <div style={{ backgroundImage: `url(${bgImage})`, backgroundSize: 'cover' , backgroundRepeat: 'no-repeat' ,
+      backgroundPosition: 'center center' , }}
+      className="hidden overflow-hidden relative sm:text-2xl lg:text-4xl px-20 pt-20 lg:block capitalize h-full">
+      <img src={lines} alt="lines" className="absolute top-0 right-0" />{' '}
+      <span>Welcome back!</span>
+      <br />
+      <span>Please enter your details.</span>
+      <img src={dots} alt="dots" className="pt-3" />
+   </div>
+   <div className={ 'bg-gray-900 flex flex-col justify-center place-items-center w-full min-h-screen' }>
+      <img src={logo} alt="logo" width={240} className={'pb-12'} />
+      <span className={ 'text-3xl text-center text-white font-medium capitalize' }>
+         Log in to your account
+      </span>
+      <form noValidate onSubmit={Formik.handleSubmit} className={'lg:w-6/12 w-9/12'}>
+         {serverErrors.length > 0 && (
+         <div className={ 'border-red-600 border p-3 text-center' + ' text-red-200 bg-red-900 text-sm rounded' }>
+            {serverErrors.map((error, index) => (
+            <span className={''} key={index}>
+               {error}
+            </span>
+            ))}
+         </div>
+         )}
+         <AnimatePresence>
+            <motion.div exit={{ opacity: 0, y: -50 }} initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }}
+               variants={{ hidden: { opacity: 0, y: -50 }, visible: { opacity: 1, y: 0 }, }}>
+               <FInputFieldCompound fieldName={'email'} Formik={Formik} label={'Your Email'} type={'email'}
+                  placeHolder={'Enter your email'} className={'w-full pb-3 bg-gray-900 rounded login-input'} />
+
+
+               <FFormWrapper className={'w-full'}>
+                  <div className={'flex gap-2 justify-between'}>
+                     <FLabel htmlFor={'password'}>Password</FLabel>
+                  </div>
+                  <div className={'relative'}>
+                     <FInputField type={isPasswordVisible ? 'text' : 'password' } name={'password'} id={'password'}
+                        placeholder={'*********'} value={Formik.values.password} onChange={Formik.handleChange}
+                        onBlur={Formik.handleBlur} className={'bg-gray-900 login-input'} />
+                     <div className={'absolute top-2.5 right-3'}>
+                        {!isPasswordVisible ? (
+                        <AiOutlineEyeInvisible className={'text-gray-400'} onClick={()=>
+                           setIsPasswordVisible(!isPasswordVisible)
+                           }
+                           />
+                           ) : (
+                           <AiOutlineEye className={'text-gray-400'} onClick={()=>
+                              setIsPasswordVisible(!isPasswordVisible)
+                              }
+                              />
+                              )}
+                     </div>
+                  </div>
+                  <FFormInvalidInput touched={Formik.touched} FieldName={'password'} errors={Formik.errors} />
+                  <div className={'flex justify-between'}>
+                     <span onClick={()=> {
+                        navigate('/forget-password')
+                        }}
+                        className={
+                        'underline cursor-pointer text-end mt-2 text-purple-400 text-xs'
+                        }>
+                        Forgot password ?
+                     </span>
+                  </div>
+               </FFormWrapper>
+            </motion.div>
+         </AnimatePresence>
+         <FFormWrapper>
+            <FButton className={'w-full py-5 border-none'} btnType={'gradient'} type={'submit'}>
+               <FIconWrapper>
+                  <span className={'text-sm'}>Sign in</span>
+                  {isLoginLoading &&
+                  <ESpinner isVisible={isLoginLoading} />}
+               </FIconWrapper>
+            </FButton>
+         </FFormWrapper>
+      </form>
+      <span className="text-sm cursor-default">
+         New member?
+         <span onClick={()=> {
+            navigate('/register')
+            }}
+            className="text-purple-400 hover:cursor-pointer hover:text-purple-600 pl-1">
+            Sign Up
+         </span>
+      </span>
+   </div>
+</div>
+</>
