@@ -20,15 +20,15 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AppComponent {
   title = 'ecommerce';
-  isLogin! : any ;
-  constructor(private spinner: NgxSpinnerService , private _AuthonService:AuthonService) {}
+  isLogin!: any;
+  constructor(
+    private spinner: NgxSpinnerService,
+    private _AuthonService: AuthonService
+  ) {}
 
   ngOnInit(): void {
-
-    this._AuthonService.isLogin.subscribe( val=>{
-      this.isLogin = val ;
-    })
-    
-    
+    this._AuthonService.isLogin.subscribe((val) => {
+      this.isLogin = val;
+    });
   }
 }
