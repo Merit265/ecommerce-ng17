@@ -4,6 +4,7 @@ import {
   computed,
   signal,
   WritableSignal,
+  OnInit,
 } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthonService } from '../authon.service';
@@ -11,6 +12,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslationService } from '../translation.service';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../cart.service';
+import { FlowbiteService } from '../services/flowbite.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +21,14 @@ import { CartService } from '../cart.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+  navLinks: any = [
+    { path: 'home', name: 'Home' },
+    { path: 'products', name: 'Products' },
+    { path: 'brands', name: 'Brands' },
+    { path: 'categories', name: 'Categories' },
+  ];
+
   showLinks: boolean = false;
   cartItems = computed(() => this.cart.cartItemsCount());
 
@@ -30,10 +39,15 @@ export class NavbarComponent {
     private _AuthonService: AuthonService,
     private _Router: Router,
     private _TranslateService: TranslationService,
-    private cart: CartService
+    private cart: CartService,
+    private flowbiteService: FlowbiteService
   ) {}
 
   ngOnInit(): void {
+    this.flowbiteService.loadFlowbite((flowbite) => {
+      console.log('Flowbite loaded successfully:', flowbite);
+    });
+
     this._AuthonService.isLogin.subscribe((value) => {
       this.showLinks = value;
 
