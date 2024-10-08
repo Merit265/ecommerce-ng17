@@ -16,6 +16,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { loaderInterceptor } from './loader.interceptor';
 import { TranslateLoader, TranslateModule  ,} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ToastrModule } from 'ngx-toastr';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -33,7 +34,11 @@ export const appConfig: ApplicationConfig = {
       withInterceptors([headersInterceptor, errorsInterceptor,loaderInterceptor])
     ),
 
-    importProvidersFrom(RouterModule, BrowserAnimationsModule , NgxSpinnerModule , TranslateModule.forRoot(
+    importProvidersFrom(RouterModule, BrowserAnimationsModule ,  ToastrModule.forRoot(
+      {
+        positionClass :'toast-bottom-right'
+      }
+    ) , NgxSpinnerModule , TranslateModule.forRoot(
       {
         // defaultLanguage:'ar',
         loader: {

@@ -11,11 +11,12 @@ import { pathGuard } from './path.guard';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AllordersComponent } from './allorders/allorders.component';
+import { loginGuard } from './login.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/register', pathMatch: 'full' },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent , canActivate:[loginGuard] },
+  { path: 'login', component: LoginComponent ,  canActivate:[loginGuard] },
 
   { path: 'home', component: HomeComponent, canActivate: [pathGuard] },
   {

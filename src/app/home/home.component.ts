@@ -1,4 +1,8 @@
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import {
+  CommonModule,
+  isPlatformBrowser,
+  isPlatformServer,
+} from '@angular/common';
 import {
   afterNextRender,
   afterRender,
@@ -19,6 +23,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchPipe } from '../search.pipe';
 import { CartItem } from '../order';
 import { map } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -30,6 +35,7 @@ import { map } from 'rxjs';
     RouterLink,
     FormsModule,
     SearchPipe,
+    CommonModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -37,7 +43,8 @@ import { map } from 'rxjs';
 export class HomeComponent implements OnInit {
   constructor(
     private _ProductsService: ProductsService,
-    private _CartService: CartService
+    private _CartService: CartService,
+    private toastr: ToastrService
   ) {}
 
   pname: string = '';
@@ -45,30 +52,25 @@ export class HomeComponent implements OnInit {
 
   allProducts!: Product[];
   allCategories!: Category[];
+  loadingStates: { [key: string]: boolean } = {};
 
   ngOnInit(): void {
-    this.loading = true;
     this._ProductsService
       .getAllProducts()
       .pipe(
         map((res) => {
-          res.data = res.data.map(
-            (elem: any) => {
+          res.data = res.data.map((elem: any) => {
             elem.price = elem.price * 10;
-            console.log(res);
-            
+
             return elem;
-          } 
-        );
-        return res ;
-        
+          });
+          return res;
         })
       )
       .subscribe({
         next: (response: any) => {
           this.loading = false;
           this.allProducts = response.data;
-          console.log(response);
         },
       });
 
@@ -93,11 +95,13 @@ export class HomeComponent implements OnInit {
   }
 
   addToCart(id: string) {
+    this.loadingStates[id] = true; // Set loading for the specific product
     this._CartService
       .addProductToCart(id, localStorage.getItem('token'))
       .subscribe((response) => {
-        console.log(response);
+        this.loadingStates[id] = false;
         this._CartService.cartItemsCount.set(response.numOfCartItems);
+        this.toastr.success('product add to cart!');
       });
   }
 }
