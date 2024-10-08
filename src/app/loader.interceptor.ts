@@ -5,13 +5,15 @@ import { finalize } from 'rxjs';
 
 export const loaderInterceptor: HttpInterceptorFn = (req, next) => {
   let spinner = inject(NgxSpinnerService);
-  if (req.method.toLowerCase() == 'get') {
-    spinner.show('ball');
-  }
+  // if (req.method.toLowerCase() == 'get') {
+  // if (req.url == 'https://ecommerce.routemisr.com/api/v1/products') {
+  //   spinner.show('ball');
+  // }
+
+  // spinner.show('ball');
 
   return next(req).pipe(
     finalize(() => {
-      spinner.hide('box');
       spinner.hide('ball');
     })
   );

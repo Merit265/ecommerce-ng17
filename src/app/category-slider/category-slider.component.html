@@ -1,16 +1,14 @@
-<h2>shop popular categories</h2>
 <owl-carousel-o [options]="customOptions">
 
- @for (c of Categories; track $index) {
+  @for (c of Categories; track $index) {
 
-   <ng-template carouselSlide [id]="c._id">
-     <img [src]="c.image" class="w-full  slider-img">
-   </ng-template>
+  <ng-template carouselSlide [id]="c._id">
+    <img [src]="c.image" class="w-full  slider-img">
+  </ng-template>
 
 
- }
+  }
 
 
 
 </owl-carousel-o>
-
