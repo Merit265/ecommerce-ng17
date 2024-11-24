@@ -5,7 +5,7 @@
 
 <div class="flex flex-wrap  flex-col  md:flex-row  justify-center mt-5">
 
-  <input type="text" [(ngModel)]="pname" class="form-control z-50 relative" placeholder="search..">
+  <input type="text" [(ngModel)]="pname" class="form-control   w-3/12 mx-auto z-50 relative" placeholder="search..">
 
   <div class="p-3 grid lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 gap-2">
     @for (p of allProducts|search:pname ; track $index) {

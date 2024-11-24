@@ -101,7 +101,7 @@ export class HomeComponent implements OnInit {
       .subscribe((response) => {
         this.loadingStates[id] = false;
         this._CartService.cartItemsCount.set(response.numOfCartItems);
-        this.toastr.success('product add to cart!');
+        this.toastr.success('product add to cart!')
       });
   }
 }
