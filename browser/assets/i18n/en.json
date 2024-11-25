@@ -1,0 +1,26 @@
+{
+ "navbar":{
+  "home" : "Home" ,
+ "products" : "Products" ,
+ "cart" : "Cart" ,
+ "brands" : "Brands" ,
+ "categories" : "Categories" ,
+ "signOut":"Signout",
+ "register":"REGISTER",
+ "login":"LOGIN"
+ },
+ "products":{
+  "home" : "Home" ,
+ "products" : "Products" ,
+ "cart" : "Cart" ,
+ "brands" : "Brands" ,
+ "categories" : "Categories" 
+ },
+ "cart":{ 
+  "home" : "Home" ,
+ "products" : "Products" ,
+ "cart" : "Cart" ,
+ "brands" : "Brands" ,
+ "categories" : "Categories" 
+ }
+}
